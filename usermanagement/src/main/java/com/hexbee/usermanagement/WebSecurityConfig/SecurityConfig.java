@@ -27,19 +27,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-            .authorizeRequests()
-            .requestMatchers("/api/v1/ecommerce/user/login").permitAll() // Allow login endpoint
-            .requestMatchers("/api/v1/ecommerce/register","/api/v1/ecommerce/user/auth/login").permitAll() // Allow registration endpoint
-            .requestMatchers("/api/v1/ecommerce/profile").authenticated()
-            .anyRequest().authenticated() // Secure all other endpoints
-            .and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Use stateless sessions
-
-        // Add JWT filter
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+                    "/v3/api-docs/**",
+                    "/swagger-ui/**",
+                    "/swagger-ui.html",
+                    "/swagger-resources/**",
+                    "/webjars/**"
+                ).permitAll()
+                .requestMatchers("/api/v1/ecommerce/user/login", "/api/v1/ecommerce/register", "/api/v1/ecommerce/user/auth/login").permitAll()
+                .anyRequest().authenticated()
+            )
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

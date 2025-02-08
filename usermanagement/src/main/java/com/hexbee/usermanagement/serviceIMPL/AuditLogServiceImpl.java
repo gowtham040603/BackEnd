@@ -4,7 +4,6 @@ import com.hexbee.usermanagement.Repository.AuditLogRepository;
 import com.hexbee.usermanagement.Repository.UserRepository;
 import com.hexbee.usermanagement.dto.AuditLogDTO;
 import com.hexbee.usermanagement.entity.AuditLogEntity;
-import com.hexbee.usermanagement.entity.InvoiceItemEntity;
 import com.hexbee.usermanagement.entity.UserEntity;
 
 import com.hexbee.usermanagement.service.AuditLogService;

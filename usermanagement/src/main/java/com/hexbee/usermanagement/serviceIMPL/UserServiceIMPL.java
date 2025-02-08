@@ -1,16 +1,11 @@
 package com.hexbee.usermanagement.serviceIMPL;
 
-import java.util.Collection;
-
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import com.hexbee.usermanagement.Repository.UserRepository;
 import com.hexbee.usermanagement.dto.UserSaveDTO;
 import com.hexbee.usermanagement.entity.UserEntity;
@@ -53,22 +48,20 @@ public class UserServiceIMPL implements UserService {
 		return userrepository.findByUsername(username);
 	}
 	
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	    // Retrieve the user from the database
-		UserEntity user = userrepository.findByUsername(username);
-	    if (user == null) {
-	        throw new UsernameNotFoundException("User not found with username: " + username);
-	    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        UserEntity user = userrepository.findByUsername(username);
+        
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
 
-	    // Convert your User entity to UserDetails object, usually a custom UserDetails class
-	    return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
-	}
-
-	private Collection<? extends GrantedAuthority> getAuthorities(UserEntity user) {
-	    // This should map user roles to authorities
-	    return AuthorityUtils.createAuthorityList(user.getPhone().toString());
-	}
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                new ArrayList<>() // No roles/authorities
+        );
+    }
 
     @Override
 	public UserEntity getUserByUsername(String username) {
