@@ -2,6 +2,7 @@ package com.hexbee.usermanagement.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,5 +13,8 @@ import com.hexbee.usermanagement.entity.InvoiceEntity;
 public interface InvoiceRepository extends JpaRepository<InvoiceEntity, Integer> {
 
 	List<InvoiceEntity> findByCreatedAtBetween(LocalDateTime fromDate, LocalDateTime toDate);
+
+	Optional<InvoiceEntity> findById(Integer invoiceId);
+
 	
 }

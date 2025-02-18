@@ -1,7 +1,10 @@
 package com.hexbee.usermanagement.serviceIMPL;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,6 +25,12 @@ public class UserServiceIMPL implements UserService {
 	
 	@Override
 	public UserEntity AddUser(UserSaveDTO usersavedto) {
+	
+		Optional<UserEntity> existingUser = userrepository.findByEmail(usersavedto.getEmail());
+	       if (existingUser.isPresent()) {
+             throw new DataIntegrityViolationException("Email already exists: " + usersavedto.getEmail());
+        }
+		
 		UserEntity eco = new UserEntity();
 		eco.setUsername(usersavedto.getUsername());
 		eco.setPassword(passwordEncoder.encode(usersavedto.getPassword()));

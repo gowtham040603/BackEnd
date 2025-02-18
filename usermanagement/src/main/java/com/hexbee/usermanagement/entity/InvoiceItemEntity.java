@@ -196,6 +196,6 @@ public class InvoiceItemEntity {
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 
-
+	
     
 }

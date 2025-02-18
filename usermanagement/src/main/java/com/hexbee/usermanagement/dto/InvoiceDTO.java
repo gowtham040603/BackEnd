@@ -22,7 +22,7 @@ public class InvoiceDTO {
 	public Integer getCustomerId() {
 		return customerId;
 	}
-	public void setCustomerName(Integer customerId) {
+	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
 	}
 	public Double getTotalAmount() {

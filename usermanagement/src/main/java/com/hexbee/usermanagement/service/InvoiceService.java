@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.hexbee.usermanagement.dto.InvoiceDTO;
 import com.hexbee.usermanagement.entity.InvoiceEntity;
+import com.hexbee.usermanagement.entity.InvoiceItemEntity;
 
 
 @Service
@@ -30,6 +31,9 @@ public interface InvoiceService {
 
 
 	List<InvoiceEntity> getInvoicesByDateRange(LocalDateTime fromDate, LocalDateTime toDate);
+
+
+	List<InvoiceItemEntity> getInvoiceItems(Integer invoiceId);
 
 
 

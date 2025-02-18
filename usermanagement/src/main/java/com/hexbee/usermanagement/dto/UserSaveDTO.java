@@ -21,7 +21,7 @@ public class UserSaveDTO {
 		@Column(unique = true)
 	    private String email;
 	    
-	    @NotBlank(message = "phone is mandatory")
+	    @NotBlank(message = "phone number is mandatory")
 	    private String phone;
 	    
 	    @NotBlank(message = "shopname is mandatory")

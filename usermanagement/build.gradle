@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     // Validation API
@@ -41,8 +42,20 @@ dependencies {
   
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     
-    // https://mvnrepository.com/artifact/com.lowagie/itext
-    implementation 'com.lowagie:itext:4.2.2'
+  
+    implementation 'com.itextpdf:itextpdf:5.5.13.4'
+    
+    
+    implementation 'com.itextpdf:itext7-core:7.2.5' // iText 7 Core Library
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA for entity management
+    implementation 'org.springframework.boot:spring-boot-starter-web' // Spring Web if needed
+
+    // Optional: If you use MySQL, PostgreSQL, or another database, add the corresponding JDBC driver
+    runtimeOnly 'com.mysql:mysql-connector-j' // MySQL JDBC Driver
+    runtimeOnly 'org.postgresql:postgresql' // PostgreSQL JDBC Driver
+    
+    
+    
     // jwt
 
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4'
@@ -64,6 +77,11 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add("-parameters")
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()

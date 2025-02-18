@@ -16,6 +16,7 @@ import com.hexbee.usermanagement.Repository.UserRepository;
 import com.hexbee.usermanagement.dto.InvoiceDTO;
 import com.hexbee.usermanagement.entity.CustomersEntity;
 import com.hexbee.usermanagement.entity.InvoiceEntity;
+import com.hexbee.usermanagement.entity.InvoiceItemEntity;
 import com.hexbee.usermanagement.entity.UserEntity;
 import com.hexbee.usermanagement.service.InvoiceService;
 
@@ -103,6 +104,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 	public List<InvoiceEntity> getInvoicesByDateRange(LocalDateTime fromDate, LocalDateTime toDate) {
 
 		return invoiceRepository.findByCreatedAtBetween(fromDate,toDate);
+	}
+
+
+
+	@Override
+	public List<InvoiceItemEntity> getInvoiceItems(Integer invoiceId) {
+		
+		return null;
 	}
 	
 	
