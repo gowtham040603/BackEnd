@@ -9,11 +9,13 @@ public class InvoiceItemDTO {
 	  private Double cgst;
 	  private Double sgst;
 	  private Double sgstAmount;
-	  private Double cgstAmount;     
+	  private Double cgstAmount;
+	  private Double unitPrice;
 	  private Double totalPrice;
 	  private Boolean isActive;
+	 
 	  
-
+	  
 	public Integer getInvoiceId() {
 		return invoiceId;
 	}
@@ -62,6 +64,12 @@ public class InvoiceItemDTO {
 	public void setCgstAmount(Double cgstAmount) {
 		this.cgstAmount = cgstAmount;
 	}
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
 	public Double getTotalPrice() {
 		return totalPrice;
 	}
@@ -74,16 +82,19 @@ public class InvoiceItemDTO {
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
-
 	@Override
 	public String toString() {
 		return "InvoiceItemDTO [invoiceId=" + invoiceId + ", productId=" + productId + ", quantity=" + quantity
 				+ ", discount=" + discount + ", cgst=" + cgst + ", sgst=" + sgst + ", sgstAmount=" + sgstAmount
-				+ ", cgstAmount=" + cgstAmount + ", totalPrice=" + totalPrice + ", isActive=" + isActive + "]";
+				+ ", cgstAmount=" + cgstAmount + ", unitPrice=" + unitPrice + ", totalPrice=" + totalPrice
+				+ ", isActive=" + isActive + "]";
 	}
-	
+	public InvoiceItemDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public InvoiceItemDTO(Integer invoiceId, Integer productId, Double quantity, Double discount, Double cgst,
-			Double sgst, Double sgstAmount, Double cgstAmount, Double totalPrice, Boolean isActive) {
+			Double sgst, Double sgstAmount, Double cgstAmount, Double unitPrice, Double totalPrice, Boolean isActive) {
 		super();
 		this.invoiceId = invoiceId;
 		this.productId = productId;
@@ -93,11 +104,11 @@ public class InvoiceItemDTO {
 		this.sgst = sgst;
 		this.sgstAmount = sgstAmount;
 		this.cgstAmount = cgstAmount;
+		this.unitPrice = unitPrice;
 		this.totalPrice = totalPrice;
 		this.isActive = isActive;
 	}
-	public InvoiceItemDTO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	  
+	  
+	  
 }

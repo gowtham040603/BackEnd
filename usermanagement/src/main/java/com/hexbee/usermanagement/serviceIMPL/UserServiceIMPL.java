@@ -37,6 +37,8 @@ public class UserServiceIMPL implements UserService {
 		eco.setEmail(usersavedto.getEmail());
 		eco.setPhone(usersavedto.getPhone());
 		eco.setShopname(usersavedto.getShopname());
+		eco.setGstNumber(usersavedto.getGstNumber());
+		eco.setSignature(usersavedto.getSignature());
 		eco.setAddress(usersavedto.getAddress());
 			
 		return userrepository.save(eco);

@@ -34,6 +34,21 @@ public class ProductServiceIMPL implements ProductService {
         product.setStock(productDTO.getStock());
         product.setHsnsac(productDTO.getHsnsac());
         
+        product.setBarcode(productDTO.getBarcode());
+        product.setCategory(productDTO.getCategory());
+        product.setTax(productDTO.getTax());
+        product.setSellingPrice(productDTO.getSellingPrice());
+        product.setDiscount(productDTO.getDiscount());
+        product.setPurchasePrice(productDTO.getPurchasePrice());
+        product.setIsSpWithTax(productDTO.getIsSpWithTax());
+        product.setIsPpWithTax(productDTO.getIsPpWithTax());
+        product.setMinStockAlert(productDTO.getMinStockAlert());
+        product.setUnitMeasurement(productDTO.getUnitMeasurement());
+        product.setBatchNumber(productDTO.getBatchNumber());
+        product.setImageUrl(productDTO.getImageUrl());
+
+        product.setDate(productDTO.getDate());
+        
         product.setCreatedBy(userRepository.findById(productDTO.getCreatedBy()) 
             .orElseThrow(() -> new RuntimeException("User not found")));
         
@@ -51,6 +66,21 @@ public class ProductServiceIMPL implements ProductService {
         product.setSgst(productDTO.getSgst());
         product.setStock(productDTO.getStock());
         product.setHsnsac(productDTO.getHsnsac());
+        
+        product.setBarcode(productDTO.getBarcode());
+        product.setCategory(productDTO.getCategory());
+        product.setTax(productDTO.getTax());
+        product.setSellingPrice(productDTO.getSellingPrice());
+        product.setDiscount(productDTO.getDiscount());
+        product.setPurchasePrice(productDTO.getPurchasePrice());
+        product.setIsSpWithTax(productDTO.getIsSpWithTax());
+        product.setIsPpWithTax(productDTO.getIsPpWithTax());
+        product.setMinStockAlert(productDTO.getMinStockAlert());
+        product.setUnitMeasurement(productDTO.getUnitMeasurement());
+        product.setBatchNumber(productDTO.getBatchNumber());
+        product.setImageUrl(productDTO.getImageUrl());
+
+        
         product.setUpdatedAt(LocalDateTime.now());
         ProductEntity updatedProduct = productRepository.save(product);
         return updatedProduct;

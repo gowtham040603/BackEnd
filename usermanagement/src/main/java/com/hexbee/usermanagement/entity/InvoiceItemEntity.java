@@ -36,6 +36,9 @@ public class InvoiceItemEntity {
     
     @Column(name = "cgst_amount")
     private Double cgstAmount;
+    
+	@Column(name = "unit_price",nullable = false)
+    private Double unitPrice;
 	
 	@Column(name = "total_price",nullable = false)
     private Double totalPrice;
@@ -57,7 +60,6 @@ public class InvoiceItemEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-    
 	public Integer getId() {
 		return id;
 	}
@@ -114,6 +116,14 @@ public class InvoiceItemEntity {
 		this.cgstAmount = cgstAmount;
 	}
 
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
 	public Double getTotalPrice() {
 		return totalPrice;
 	}
@@ -162,11 +172,22 @@ public class InvoiceItemEntity {
 		this.updatedAt = updatedAt;
 	}
 
+	@Override
+	public String toString() {
+		return "InvoiceItemEntity [id=" + id + ", quantity=" + quantity + ", discount=" + discount + ", cgst=" + cgst
+				+ ", sgst=" + sgst + ", sgstAmount=" + sgstAmount + ", cgstAmount=" + cgstAmount + ", unitPrice="
+				+ unitPrice + ", totalPrice=" + totalPrice + ", isActive=" + isActive + ", invoice=" + invoice
+				+ ", product=" + product + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
 
+	public InvoiceItemEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public InvoiceItemEntity(Integer id, Double quantity, Double discount, Double cgst, Double sgst, Double sgstAmount,
-			Double cgstAmount, Double totalPrice, Boolean isActive, InvoiceEntity invoice, ProductEntity product,
-			LocalDateTime createdAt, LocalDateTime updatedAt) {
+			Double cgstAmount, Double unitPrice, Double totalPrice, Boolean isActive, InvoiceEntity invoice,
+			ProductEntity product, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.quantity = quantity;
@@ -175,6 +196,7 @@ public class InvoiceItemEntity {
 		this.sgst = sgst;
 		this.sgstAmount = sgstAmount;
 		this.cgstAmount = cgstAmount;
+		this.unitPrice = unitPrice;
 		this.totalPrice = totalPrice;
 		this.isActive = isActive;
 		this.invoice = invoice;
@@ -183,19 +205,8 @@ public class InvoiceItemEntity {
 		this.updatedAt = updatedAt;
 	}
 
-	public InvoiceItemEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "InvoiceItemEntity [id=" + id + ", quantity=" + quantity + ", discount=" + discount + ", cgst=" + cgst
-				+ ", sgst=" + sgst + ", sgstAmount=" + sgstAmount + ", cgstAmount=" + cgstAmount + ", totalPrice="
-				+ totalPrice + ", isActive=" + isActive + ", invoice=" + invoice + ", product=" + product
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
-	}
-
+    
+    
 	
     
 }

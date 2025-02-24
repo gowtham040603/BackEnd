@@ -48,6 +48,7 @@ public class InvoiceItemServiceImpl  implements InvoiceItemService{
 	        item.setSgst(invoiceItemDTO.getSgst());
 	        item.setSgstAmount(invoiceItemDTO.getSgstAmount());
 	        item.setCgstAmount(invoiceItemDTO.getCgstAmount());
+	        item.setUnitPrice(invoiceItemDTO.getUnitPrice());
 	        item.setTotalPrice(invoiceItemDTO.getTotalPrice());
 	        item.setIsActive(invoiceItemDTO.getIsActive());
 	    
@@ -65,6 +66,7 @@ public class InvoiceItemServiceImpl  implements InvoiceItemService{
 	        entity.setSgst(invoiceItemDTO.getSgst());
 	        entity.setSgstAmount(invoiceItemDTO.getSgstAmount());
 	        entity.setCgstAmount(invoiceItemDTO.getCgstAmount());
+	        entity.setUnitPrice(invoiceItemDTO.getUnitPrice());
 	        entity.setTotalPrice(invoiceItemDTO.getTotalPrice());
 	        entity.setIsActive(invoiceItemDTO.getIsActive());
 	        

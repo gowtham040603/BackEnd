@@ -26,8 +26,8 @@ public class InvoiceEntity {
 	  @Column(name = "total_amount", nullable = false)
 	  private Double totalAmount;
 	  
-	  @Column(name = "gst_amount")
-	  private Double gstAmount;
+	  @Column(name = "tax")
+	  private Double tax;
 	  
 	  @Column(name = "final_amount")
 	  private Double finalAmount;
@@ -82,12 +82,12 @@ public class InvoiceEntity {
 		this.totalAmount = totalAmount;
 	}
 
-	public Double getGstAmount() {
-		return gstAmount;
+	public Double getTax() {
+		return tax;
 	}
 
-	public void setGstAmount(Double gstAmount) {
-		this.gstAmount = gstAmount;
+	public void setTax(Double tax) {
+		this.tax = tax;
 	}
 
 	public Double getFinalAmount() {
@@ -162,14 +162,14 @@ public class InvoiceEntity {
 		this.updatedAt = updatedAt;
 	}
 
-	public InvoiceEntity(Integer id, String invoiceNumber, Double totalAmount, Double gstAmount, Double finalAmount,
+	public InvoiceEntity(Integer id, String invoiceNumber, Double totalAmount, Double tax, Double finalAmount,
 			Double paidAmount, Double balanceAmount, Double discount, Boolean isActive, UserEntity createdBy,
 			CustomersEntity customerId, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.invoiceNumber = invoiceNumber;
 		this.totalAmount = totalAmount;
-		this.gstAmount = gstAmount;
+		this.tax = tax;
 		this.finalAmount = finalAmount;
 		this.paidAmount = paidAmount;
 		this.balanceAmount = balanceAmount;
@@ -184,7 +184,7 @@ public class InvoiceEntity {
 	@Override
 	public String toString() {
 		return "InvoiceEntity [id=" + id + ", invoiceNumber=" + invoiceNumber + ", totalAmount=" + totalAmount
-				+ ", gstAmount=" + gstAmount + ", finalAmount=" + finalAmount + ", paidAmount=" + paidAmount
+				+ ", tax=" + tax + ", finalAmount=" + finalAmount + ", paidAmount=" + paidAmount
 				+ ", balanceAmount=" + balanceAmount + ", discount=" + discount + ", isActive=" + isActive
 				+ ", createdBy=" + createdBy + ", customerId=" + customerId + ", createdAt=" + createdAt
 				+ ", updatedAt=" + updatedAt + "]";

@@ -11,15 +11,15 @@ import jakarta.validation.Valid;
 @Service
 public interface CustomersService {
 
-	CustomersEntity AddCustomer(@Valid CustomersDTO customersavedto);
+	 public CustomersEntity AddCustomer(@Valid CustomersDTO customersavedto);
 
-	List<CustomersEntity> getAllCustomers();
+	 public List<CustomersEntity> getAllCustomers();
 
-	CustomersEntity updateCustomer(Integer id, @Valid CustomersDTO customerDTO);
+	 public CustomersEntity updateCustomer(Integer id, @Valid CustomersDTO customerDTO);
 
-	CustomersEntity getCustomerById(Integer id);
+	 public CustomersEntity getCustomerById(Integer id);
 
-	void deleteCustomer(Integer id);
+	 public void deleteCustomer(Integer id);
 
 	
 	

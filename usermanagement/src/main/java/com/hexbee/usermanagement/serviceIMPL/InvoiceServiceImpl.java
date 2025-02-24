@@ -37,7 +37,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         InvoiceEntity invoice = new InvoiceEntity();
         invoice.setInvoiceNumber(invoiceDTO.getInvoiceNumber());
         invoice.setTotalAmount(invoiceDTO.getTotalAmount());
-        invoice.setGstAmount(invoiceDTO.getGstAmount());
+        invoice.setTax(invoiceDTO.getTax());
         invoice.setFinalAmount(invoiceDTO.getFinalAmount());
         invoice.setPaidAmount(invoiceDTO.getPaidAmount());
         invoice.setBalanceAmount(invoiceDTO.getBalanceAmount());
@@ -69,7 +69,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         invoiceEntity.setInvoiceNumber(invoiceDTO.getInvoiceNumber());
      
         invoiceEntity.setTotalAmount(invoiceDTO.getTotalAmount());
-        invoiceEntity.setGstAmount(invoiceDTO.getGstAmount());
+        invoiceEntity.setTax(invoiceDTO.getTax());
         invoiceEntity.setFinalAmount(invoiceDTO.getFinalAmount());
         invoiceEntity.setPaidAmount(invoiceDTO.getPaidAmount());
         invoiceEntity.setBalanceAmount(invoiceDTO.getBalanceAmount());

@@ -39,6 +39,12 @@ public class UserEntity {
 	 @Column(name="shopname")
 	 private String shopname;
 	 
+	 @Column(name="gst_number")
+	 private String gstNumber;
+	 
+	 @Column(name="signature",columnDefinition = "TEXT")
+	 private String signature;
+	 
 	 @Column(name="address")
 	 private String address;
 
@@ -52,22 +58,6 @@ public class UserEntity {
 	 @UpdateTimestamp
 	 @Column(name = "updated_at")
      private LocalDateTime updatedAt;
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 
 	public Integer getId() {
 		return id;
@@ -117,6 +107,22 @@ public class UserEntity {
 		this.shopname = shopname;
 	}
 
+	public String getGstNumber() {
+		return gstNumber;
+	}
+
+	public void setGstNumber(String gstNumber) {
+		this.gstNumber = gstNumber;
+	}
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -124,31 +130,43 @@ public class UserEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-    public Boolean getIsActive() {
-        return isActive;
-    }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
-    }
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	@Override
 	public String toString() {
 		return "UserEntity [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", phone=" + phone + ", shopname=" + shopname + ", address=" + address + ", isActive=" + isActive
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
-	}
-
-	public UserEntity() {
-		super();
-		// TODO Auto-generated constructor stub
+				+ ", phone=" + phone + ", shopname=" + shopname + ", gstNumber=" + gstNumber + ", signature="
+				+ signature + ", address=" + address + ", isActive=" + isActive + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + "]";
 	}
 
 	public UserEntity(Integer id, String username, String password,
 			@Email @NotBlank(message = "Email is mandatory") String email, String phone, String shopname,
-			String address, Boolean isActive, LocalDateTime createdAt, LocalDateTime updatedAt) {
+			String gstNumber, String signature, String address, Boolean isActive, LocalDateTime createdAt,
+			LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -156,13 +174,19 @@ public class UserEntity {
 		this.email = email;
 		this.phone = phone;
 		this.shopname = shopname;
+		this.gstNumber = gstNumber;
+		this.signature = signature;
 		this.address = address;
 		this.isActive = isActive;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
 
+	public UserEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-
+	
 	
 }

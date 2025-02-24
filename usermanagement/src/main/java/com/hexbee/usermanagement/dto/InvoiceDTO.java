@@ -5,7 +5,7 @@ public class InvoiceDTO {
 	  private String invoiceNumber;
 	  private Integer customerId;
 	  private Double totalAmount;
-	  private Double gstAmount;
+	  private Double tax;
 	  private Double finalAmount;
 	  private Double paidAmount;
 	  private Double balanceAmount;
@@ -31,11 +31,11 @@ public class InvoiceDTO {
 	public void setTotalAmount(Double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-	public Double getGstAmount() {
-		return gstAmount;
+	public Double getTax() {
+		return tax;
 	}
-	public void setGstAmount(Double gstAmount) {
-		this.gstAmount = gstAmount;
+	public void setTax(Double tax) {
+		this.tax = tax;
 	}
 	public Double getFinalAmount() {
 		return finalAmount;
@@ -79,14 +79,14 @@ public class InvoiceDTO {
 	}
 
 	
-	public InvoiceDTO(String invoiceNumber, Integer customerId, Double totalAmount, Double gstAmount,
+	public InvoiceDTO(String invoiceNumber, Integer customerId, Double totalAmount, Double tax,
 			Double finalAmount, Double paidAmount, Double balanceAmount, Double discount, Boolean isActive,
 			Integer createdBy) {
 		super();
 		this.invoiceNumber = invoiceNumber;
 		this.customerId = customerId;
 		this.totalAmount = totalAmount;
-		this.gstAmount = gstAmount;
+		this.tax = tax;
 		this.finalAmount = finalAmount;
 		this.paidAmount = paidAmount;
 		this.balanceAmount = balanceAmount;
@@ -97,7 +97,7 @@ public class InvoiceDTO {
 	@Override
 	public String toString() {
 		return "InvoiceDTO [invoiceNumber=" + invoiceNumber + ", customerId=" + customerId + ", totalAmount="
-				+ totalAmount + ", gstAmount=" + gstAmount + ", finalAmount=" + finalAmount + ", paidAmount="
+				+ totalAmount + ", tax=" + tax + ", finalAmount=" + finalAmount + ", paidAmount="
 				+ paidAmount + ", balanceAmount=" + balanceAmount + ", discount=" + discount + ", isActive=" + isActive
 				+ ", createdBy=" + createdBy + "]";
 	}

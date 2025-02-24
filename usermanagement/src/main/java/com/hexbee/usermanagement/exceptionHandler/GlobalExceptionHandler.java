@@ -54,9 +54,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> handleUnauthorizedAccessException(UnauthorizedAccessException ex, WebRequest request) {
         return buildErrorResponse(HttpStatus.UNAUTHORIZED, ex.getMessage(), request);
     }
-
-
-
+    
+    
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<String> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+    
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -68,13 +72,26 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleDuplicateEntryException(DataIntegrityViolationException ex) {
-        if (ex.getMessage().contains("Duplicate entry")) {
-            return new ResponseEntity<>("Email already exists. Please use a different email.", HttpStatus.CONFLICT);
+        String message = ex.getMessage();
+
+        if (message.contains("Duplicate entry")) {
+            if (message.contains("for key 'vendor.UKbylgbejpglm23j5mkuwfcwd5o'")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body("Vendor code already exists. Please use a different code.");
+            } else if (message.contains("for key 'vendor.email'")) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body("Email already exists. Please use a different email.");
+            }
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Duplicate entry detected. Please check your input.");
         }
-        return new ResponseEntity<>("Database error: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Database error: " + message);
     }
 
-    
+  
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGenericException(Exception ex, WebRequest request) {
         return buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred", request);
