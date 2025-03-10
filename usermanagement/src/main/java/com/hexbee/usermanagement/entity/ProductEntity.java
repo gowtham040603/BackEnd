@@ -1,18 +1,8 @@
 package com.hexbee.usermanagement.entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "products")
@@ -22,85 +12,100 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "price_per_unit")
     private Double pricePerUnit;
 
-    @Column(name = "barcode")
+    @Column(name = "barcode", unique = true)
     private String barcode;
-    
+
     @Column(name = "category")
     private String category;
-    
+
     @Column(name = "tax")
     private String tax;
-    
+
     @Column(name = "selling_price")
     private Double sellingPrice;
-    
+
     @Column(name = "discount")
     private Double discount;
-    
+
     @Column(name = "purchase_price")
     private Double purchasePrice;
-    
+
     @Column(name = "is_sp_with_tax")
-    private Boolean isSpWithTax ;
-    
+    private Boolean isSpWithTax;
+
     @Column(name = "is_pp_with_tax")
     private Boolean isPpWithTax;
-    
+
     @Column(name = "min_stock_alert")
     private Integer minStockAlert;
-    
-    @Column(name = "unit_measurement")
-    private String unitMeasurement;
-    
+
+    @Column(name = "sub_Unit")
+    private String subUnit;
+
     @Column(name = "batch_number")
     private Integer batchNumber;
-    
-    @Column(name = "date", nullable = false)
+
+    @Column(name = "date", nullable = false, updatable = false)
     private LocalDate date;
-    
+
     @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(name = "BaseUnit")
+    private String baseUnit;
     
-    @Column(name = "unit")
-    private String unit;
+    @Column(name = "UnitCount")
+    private Double unitCount;
 
     @Column(name = "cgst")
     private Double cgst;
-    
+
     @Column(name = "sgst")
     private Double sgst;
-    
+
     @Column(name = "hsn_sac")
     private Integer hsnsac;
-    
+
     @Column(name = "stock")
     private Integer stock;
 
-	@Column(name = "active")
+    @Column(name = "active")
     private Boolean isActive = true;
-	
+
     @ManyToOne
     @JoinColumn(name = "created_by")
     private UserEntity createdBy;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private LocalDateTime updatedAt = LocalDateTime.now();
-    
+    private LocalDateTime updatedAt;
+
     @PrePersist
-    public void prePersist() {
+    protected void onCreate() {
         if (this.date == null) {
             this.date = LocalDate.now();
         }
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+	public ProductEntity() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Integer getId() {
 		return id;
@@ -198,12 +203,12 @@ public class ProductEntity {
 		this.minStockAlert = minStockAlert;
 	}
 
-	public String getUnitMeasurement() {
-		return unitMeasurement;
+	public String getSubUnit() {
+		return subUnit;
 	}
 
-	public void setUnitMeasurement(String unitMeasurement) {
-		this.unitMeasurement = unitMeasurement;
+	public void setSubUnit(String subUnit) {
+		this.subUnit = subUnit;
 	}
 
 	public Integer getBatchNumber() {
@@ -214,11 +219,11 @@ public class ProductEntity {
 		this.batchNumber = batchNumber;
 	}
 
-	public LocalDate  getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate  date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -230,12 +235,20 @@ public class ProductEntity {
 		this.imageUrl = imageUrl;
 	}
 
-	public String getUnit() {
-		return unit;
+	public String getBaseUnit() {
+		return baseUnit;
 	}
 
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void setBaseUnit(String baseUnit) {
+		this.baseUnit = baseUnit;
+	}
+
+	public Double getUnitCount() {
+		return unitCount;
+	}
+
+	public void setUnitCount(Double unitCount) {
+		this.unitCount = unitCount;
 	}
 
 	public Double getCgst() {
@@ -302,26 +315,10 @@ public class ProductEntity {
 		this.updatedAt = updatedAt;
 	}
 
-	public ProductEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "ProductEntity [id=" + id + ", name=" + name + ", pricePerUnit=" + pricePerUnit + ", barcode=" + barcode
-				+ ", category=" + category + ", tax=" + tax + ", sellingPrice=" + sellingPrice + ", discount="
-				+ discount + ", purchasePrice=" + purchasePrice + ", isSpWithTax=" + isSpWithTax + ", isPpWithTax="
-				+ isPpWithTax + ", minStockAlert=" + minStockAlert + ", unitMeasurement=" + unitMeasurement
-				+ ", batchNumber=" + batchNumber + ", date=" + date + ", imageUrl=" + imageUrl + ", unit=" + unit
-				+ ", cgst=" + cgst + ", sgst=" + sgst + ", hsnsac=" + hsnsac + ", stock=" + stock + ", isActive="
-				+ isActive + ", createdBy=" + createdBy + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
-	}
-
 	public ProductEntity(Integer id, String name, Double pricePerUnit, String barcode, String category, String tax,
 			Double sellingPrice, Double discount, Double purchasePrice, Boolean isSpWithTax, Boolean isPpWithTax,
-			Integer minStockAlert, String unitMeasurement, Integer batchNumber, LocalDate  date, String imageUrl,
-			String unit, Double cgst, Double sgst, Integer hsnsac, Integer stock, Boolean isActive,
+			Integer minStockAlert, String subUnit, Integer batchNumber, LocalDate date, String imageUrl,
+			String baseUnit, Double unitCount, Double cgst, Double sgst, Integer hsnsac, Integer stock, Boolean isActive,
 			UserEntity createdBy, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
@@ -336,11 +333,12 @@ public class ProductEntity {
 		this.isSpWithTax = isSpWithTax;
 		this.isPpWithTax = isPpWithTax;
 		this.minStockAlert = minStockAlert;
-		this.unitMeasurement = unitMeasurement;
+		this.subUnit = subUnit;
 		this.batchNumber = batchNumber;
 		this.date = date;
 		this.imageUrl = imageUrl;
-		this.unit = unit;
+		this.baseUnit = baseUnit;
+		this.unitCount = unitCount;
 		this.cgst = cgst;
 		this.sgst = sgst;
 		this.hsnsac = hsnsac;
@@ -351,9 +349,18 @@ public class ProductEntity {
 		this.updatedAt = updatedAt;
 	}
 
-
+	@Override
+	public String toString() {
+		return "ProductEntity [id=" + id + ", name=" + name + ", pricePerUnit=" + pricePerUnit + ", barcode=" + barcode
+				+ ", category=" + category + ", tax=" + tax + ", sellingPrice=" + sellingPrice + ", discount="
+				+ discount + ", purchasePrice=" + purchasePrice + ", isSpWithTax=" + isSpWithTax + ", isPpWithTax="
+				+ isPpWithTax + ", minStockAlert=" + minStockAlert + ", subUnit=" + subUnit + ", batchNumber="
+				+ batchNumber + ", date=" + date + ", imageUrl=" + imageUrl + ", baseUnit=" + baseUnit + ", unitCount="
+				+ unitCount + ", cgst=" + cgst + ", sgst=" + sgst + ", hsnsac=" + hsnsac + ", stock=" + stock
+				+ ", isActive=" + isActive + ", createdBy=" + createdBy + ", createdAt=" + createdAt + ", updatedAt="
+				+ updatedAt + "]";
+	}
 
 	
-
-
+	
 }

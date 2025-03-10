@@ -15,6 +15,11 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.util.Map;
 
+import java.util.Collections;
+import java.util.HashMap;
+import org.springframework.http.*;
+import org.springframework.web.client.RestTemplate;
+
 import com.hexbee.usermanagement.dto.NotificationRequest;
 import com.hexbee.usermanagement.service.NotificationService;
 
@@ -55,30 +60,31 @@ public class NotificationServiceImpl implements NotificationService {
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-            helper.setFrom("vkgowtham68@gmail.com");
+            helper.setFrom(request.getSender());
             helper.setTo(request.getRecipient());
             helper.setSubject(request.getSubject());
 
-            // ✅ Correctly get templateType from the request object
+            // Determine the correct template
             String templateType = request.getTemplateType();
-            String templateName;
+            String templateName = "emails/welcome/welcome-mail";
 
             if ("ORDER_CONFIRMATION".equalsIgnoreCase(templateType)) {
                 templateName = "emails/order/order-confirmation-mail";
-            } else if ("WELCOME".equalsIgnoreCase(templateType)) {
-                templateName = "emails/welcome/welcome-mail";
-            } else {
+            } else if (!"WELCOME".equalsIgnoreCase(templateType)) {
                 log.error("Unknown email template type: {}", templateType);
                 return;
             }
 
             // ✅ Set Thymeleaf Context
             Context context = new Context();
-            context.setVariables(request.getData());
+            context.setVariables(request.getData());  // Pass all request data
+            context.setVariable("displayName", request.getDisplayName());  // Ensure displayName is passed
 
-            // ✅ Process template and send email
+            // ✅ Generate HTML email content
             String htmlContent = templateEngine.process(templateName, context);
             helper.setText(htmlContent, true);
+
+            // Send the email
             mailSender.send(message);
             log.info("Email sent successfully to {}", request.getRecipient());
 
@@ -87,14 +93,15 @@ public class NotificationServiceImpl implements NotificationService {
         }
     }
 
+    private void sendWhatsappNotification(NotificationRequest request) {
+        log.info("Sending WhatsApp message to {}", request.getRecipient());
+
+
+    }
 
 
     private void sendSmsNotification(NotificationRequest request) {
         log.info("Sending SMS to {}", request.getRecipient());
-    }
-
-    private void sendWhatsappNotification(NotificationRequest request) {
-        log.info("Sending WhatsApp message to {}", request.getRecipient());
     }
 
     private void sendPushNotification(NotificationRequest request) {

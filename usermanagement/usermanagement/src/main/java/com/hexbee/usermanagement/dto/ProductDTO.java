@@ -23,6 +23,7 @@ public class ProductDTO {
     private Integer minStockAlert;
     private String unitMeasurement;
     private Integer batchNumber;
+;
     private String imageUrl;
     private Integer stock;
     private Integer createdBy;

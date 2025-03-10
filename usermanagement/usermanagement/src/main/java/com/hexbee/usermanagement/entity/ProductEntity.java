@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "products")

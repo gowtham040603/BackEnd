@@ -8,7 +8,7 @@ public class ProductDTO {
 	
     private String name;
     private Double pricePerUnit;
-    private String unit;
+    private String subUnit;
     private Double cgst;
     private Double sgst;
     private Integer hsnsac;
@@ -21,13 +21,13 @@ public class ProductDTO {
     private Boolean isSpWithTax;
     private Boolean isPpWithTax;
     private Integer minStockAlert;
-    private String unitMeasurement;
+    private String baseUnit;
     private Integer batchNumber;
-;
     private String imageUrl;
     private Integer stock;
     private Integer createdBy;
     private Boolean isActive;
+    private Double unitCount;
     
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate  date;
@@ -48,12 +48,12 @@ public class ProductDTO {
 		this.pricePerUnit = pricePerUnit;
 	}
 
-	public String getUnit() {
-		return unit;
+	public String getSubUnit() {
+		return subUnit;
 	}
 
-	public void setUnit(String unit) {
-		this.unit = unit;
+	public void setSubUnit(String subUnit) {
+		this.subUnit = subUnit;
 	}
 
 	public Double getCgst() {
@@ -152,13 +152,17 @@ public class ProductDTO {
 		this.minStockAlert = minStockAlert;
 	}
 
-	public String getUnitMeasurement() {
-		return unitMeasurement;
+
+	public String getBaseUnit() {
+		return baseUnit;
 	}
 
-	public void setUnitMeasurement(String unitMeasurement) {
-		this.unitMeasurement = unitMeasurement;
+
+
+	public void setBaseUnit(String baseUnit) {
+		this.baseUnit = baseUnit;
 	}
+	
 
 	public Integer getBatchNumber() {
 		return batchNumber;
@@ -207,15 +211,24 @@ public class ProductDTO {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+	
+	public Double getUnitCount() {
+		return unitCount;
+	}
+
+	public void setUnitCount(Double unitCount) {
+		this.unitCount = unitCount;
+	}
 
 	@Override
 	public String toString() {
-		return "ProductDTO [name=" + name + ", pricePerUnit=" + pricePerUnit + ", unit=" + unit + ", cgst=" + cgst
+		return "ProductDTO [name=" + name + ", pricePerUnit=" + pricePerUnit + ", subUnit=" + subUnit + ", cgst=" + cgst
 				+ ", sgst=" + sgst + ", hsnsac=" + hsnsac + ", barcode=" + barcode + ", category=" + category + ", tax="
 				+ tax + ", sellingPrice=" + sellingPrice + ", discount=" + discount + ", purchasePrice=" + purchasePrice
 				+ ", isSpWithTax=" + isSpWithTax + ", isPpWithTax=" + isPpWithTax + ", minStockAlert=" + minStockAlert
-				+ ", unitMeasurement=" + unitMeasurement + ", batchNumber=" + batchNumber + ", imageUrl=" + imageUrl
-				+ ", stock=" + stock + ", createdBy=" + createdBy + ", isActive=" + isActive + ", date=" + date + "]";
+				+ ", baseUnit=" + baseUnit + ", batchNumber=" + batchNumber + ", imageUrl=" + imageUrl + ", stock="
+				+ stock + ", createdBy=" + createdBy + ", isActive=" + isActive + ", unitCount=" + unitCount + ", date="
+				+ date + "]";
 	}
 
 	public ProductDTO() {
@@ -223,14 +236,14 @@ public class ProductDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductDTO(String name, Double pricePerUnit, String unit, Double cgst, Double sgst, Integer hsnsac,
+	public ProductDTO(String name, Double pricePerUnit, String subUnit, Double cgst, Double sgst, Integer hsnsac,
 			String barcode, String category, String tax, Double sellingPrice, Double discount, Double purchasePrice,
-			Boolean isSpWithTax, Boolean isPpWithTax, Integer minStockAlert, String unitMeasurement,
-			Integer batchNumber, String imageUrl, Integer stock, Integer createdBy, Boolean isActive, LocalDate date) {
+			Boolean isSpWithTax, Boolean isPpWithTax, Integer minStockAlert, String baseUnit, Integer batchNumber,
+			String imageUrl, Integer stock, Integer createdBy, Boolean isActive, Double unitCount, LocalDate date) {
 		super();
 		this.name = name;
 		this.pricePerUnit = pricePerUnit;
-		this.unit = unit;
+		this.subUnit = subUnit;
 		this.cgst = cgst;
 		this.sgst = sgst;
 		this.hsnsac = hsnsac;
@@ -243,16 +256,17 @@ public class ProductDTO {
 		this.isSpWithTax = isSpWithTax;
 		this.isPpWithTax = isPpWithTax;
 		this.minStockAlert = minStockAlert;
-		this.unitMeasurement = unitMeasurement;
+		this.baseUnit = baseUnit;
 		this.batchNumber = batchNumber;
 		this.imageUrl = imageUrl;
 		this.stock = stock;
 		this.createdBy = createdBy;
 		this.isActive = isActive;
+		this.unitCount = unitCount;
 		this.date = date;
 	}
 
-	
+
 	
 	
 }

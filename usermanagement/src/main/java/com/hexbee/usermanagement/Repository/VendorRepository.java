@@ -11,7 +11,7 @@ import com.hexbee.usermanagement.entity.VendorEntity;
 @Repository
 public interface VendorRepository extends JpaRepository<VendorEntity, Long> {
 	
-    Optional<VendorEntity> findByCode(String code);
+    Optional<VendorEntity> findByvendorCode(String code);
 
 	List<VendorEntity> findAll();
 

@@ -54,19 +54,7 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j' // MySQL JDBC Driver
     runtimeOnly 'org.postgresql:postgresql' // PostgreSQL JDBC Driver
     
-    //notification
     
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'com.amazonaws:aws-java-sdk-sns:1.12.674' // AWS SNS for SMS & Push Notifications
-    implementation 'org.springframework.boot:spring-boot-starter-mail' // Email support
-    implementation 'com.twilio.sdk:twilio:9.0.0' // Twilio for SMS & WhatsApp
-    implementation 'com.google.firebase:firebase-admin:9.1.1' // Firebase for Push Notifications
-
-    //Thymeleaf  
-        
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     
     // jwt
 
