@@ -8,11 +8,11 @@ public class VendorDTO {
 	
 	private Long id;
 	
-    @NotBlank(message = "vendorName is mandatory")
-    private String vendorName;
+    @NotBlank(message = "Name is mandatory")
+    private String name;
     
-    @NotBlank(message = "vendorCode is mandatory")
-    private String vendorCode;
+    @NotBlank(message = "code is mandatory")
+    private String code;
     
     @NotBlank(message = "GST Number is mandatory")
     private String gstNumber;
@@ -39,20 +39,20 @@ public class VendorDTO {
 		this.id = id;
 	}
 
-	public String getVendorName() {
-		return vendorName;
+	public String getName() {
+		return name;
 	}
 
-	public void setVendorName(String vendorName) {
-		this.vendorName = vendorName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getVendorCode() {
-		return vendorCode;
+	public String getCode() {
+		return code;
 	}
 
-	public void setVendorCode(String vendorCode) {
-		this.vendorCode = vendorCode;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	public String getGstNumber() {
@@ -97,8 +97,8 @@ public class VendorDTO {
 
 	@Override
 	public String toString() {
-		return "VendorDTO [id=" + id + ", vendorName=" + vendorName + ", vendorCode=" + vendorCode + ", gstNumber="
-				+ gstNumber + ", contactPerson=" + contactPerson + ", phoneNumber=" + phoneNumber + ", email=" + email
+		return "VendorDTO [id=" + id + ", name=" + name + ", code=" + code + ", gstNumber=" + gstNumber
+				+ ", contactPerson=" + contactPerson + ", phoneNumber=" + phoneNumber + ", email=" + email
 				+ ", address=" + address + "]";
 	}
 
@@ -107,25 +107,23 @@ public class VendorDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public VendorDTO(Long id, @NotBlank(message = "vendorName is mandatory") String vendorName,
-			@NotBlank(message = "vendorCode is mandatory") String vendorCode,
+	public VendorDTO(Long id, @NotBlank(message = "Name is mandatory") String name,
+			@NotBlank(message = "code is mandatory") String code,
 			@NotBlank(message = "GST Number is mandatory") String gstNumber,
 			@NotBlank(message = "Contact Person is mandatory") String contactPerson,
 			@NotBlank(message = "phoneNumber is mandatory") String phoneNumber,
-			@Email @NotBlank(message = "EmailId is mandatory") String email,
+			@NotBlank(message = "EmailId is mandatory") String email,
 			@NotBlank(message = "Address is mandatory") String address) {
 		super();
 		this.id = id;
-		this.vendorName = vendorName;
-		this.vendorCode = vendorCode;
+		this.name = name;
+		this.code = code;
 		this.gstNumber = gstNumber;
 		this.contactPerson = contactPerson;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.address = address;
 	}
-
-    
     
     
     

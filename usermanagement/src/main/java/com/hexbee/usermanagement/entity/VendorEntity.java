@@ -24,11 +24,11 @@ public class VendorEntity {
 	    
 	    @NotBlank(message = "name is mandatory")
 	    @Column(nullable = false)
-	    private String vendorName;
+	    private String name;
 
 	    @NotBlank(message = "code is mandatory")
-	    @Column(name="vendorCode",unique = true, nullable = false)
-	    private String vendorCode;
+	    @Column(name="code",unique = true, nullable = false)
+	    private String code;
 
 	    @NotBlank(message = "gstNumber is mandatory")
 	    @Column(name="gst_Number",unique = true, nullable = false)
@@ -68,20 +68,20 @@ public class VendorEntity {
 			this.id = id;
 		}
 
-		public String getVendorName() {
-			return vendorName;
+		public String getName() {
+			return name;
 		}
 
-		public void setVendorName(String vendorName) {
-			this.vendorName = vendorName;
+		public void setName(String name) {
+			this.name = name;
 		}
 
-		public String getVendorCode() {
-			return vendorCode;
+		public String getCode() {
+			return code;
 		}
 
-		public void setVendorCode(String vendorCode) {
-			this.vendorCode = vendorCode;
+		public void setCode(String code) {
+			this.code = code;
 		}
 
 		public String getGstNumber() {
@@ -140,8 +140,20 @@ public class VendorEntity {
 			this.updatedAt = updatedAt;
 		}
 
-		public VendorEntity(Long id, @NotBlank(message = "name is mandatory") String vendorName,
-				@NotBlank(message = "code is mandatory") String vendorCode,
+		@Override
+		public String toString() {
+			return "VendorEntity [id=" + id + ", name=" + name + ", code=" + code + ", gstNumber=" + gstNumber
+					+ ", contactPerson=" + contactPerson + ", phoneNumber=" + phoneNumber + ", address=" + address
+					+ ", email=" + email + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		}
+
+		public VendorEntity() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+
+		public VendorEntity(Long id, @NotBlank(message = "name is mandatory") String name,
+				@NotBlank(message = "code is mandatory") String code,
 				@NotBlank(message = "gstNumber is mandatory") String gstNumber,
 				@NotBlank(message = "contactPerson is mandatory") String contactPerson,
 				@NotBlank(message = "phoneNumber is mandatory") String phoneNumber,
@@ -150,8 +162,8 @@ public class VendorEntity {
 				LocalDateTime updatedAt) {
 			super();
 			this.id = id;
-			this.vendorName = vendorName;
-			this.vendorCode = vendorCode;
+			this.name = name;
+			this.code = code;
 			this.gstNumber = gstNumber;
 			this.contactPerson = contactPerson;
 			this.phoneNumber = phoneNumber;
@@ -161,19 +173,8 @@ public class VendorEntity {
 			this.updatedAt = updatedAt;
 		}
 
-		@Override
-		public String toString() {
-			return "VendorEntity [id=" + id + ", vendorName=" + vendorName + ", vendorCode=" + vendorCode
-					+ ", gstNumber=" + gstNumber + ", contactPerson=" + contactPerson + ", phoneNumber=" + phoneNumber
-					+ ", address=" + address + ", email=" + email + ", createdAt=" + createdAt + ", updatedAt="
-					+ updatedAt + "]";
-		}
-
-		public VendorEntity() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
-
-		
+	
+	    
+	    
 	    
 }

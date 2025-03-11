@@ -37,8 +37,8 @@ public class VendorServiceIMPL implements VendorService {
 		
         VendorEntity vendor =  new VendorEntity();
         
-           vendor.setVendorName(vendorDTO.getVendorName());
-           vendor.setVendorCode(vendorDTO.getVendorCode());
+           vendor.setName(vendorDTO.getName());
+           vendor.setCode(vendorDTO.getCode());
            vendor.setGstNumber(vendorDTO.getGstNumber());
            vendor.setContactPerson(vendorDTO.getContactPerson());
            vendor.setPhoneNumber(vendorDTO.getPhoneNumber());
@@ -67,8 +67,8 @@ public class VendorServiceIMPL implements VendorService {
     	VendorEntity editVendor = vendorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Vendor not found with ID: " + id));
 
-    	editVendor.setVendorName(vendorDTO.getVendorName());
-    	editVendor.setVendorCode(vendorDTO.getVendorCode());
+    	editVendor.setName(vendorDTO.getName());
+    	editVendor.setCode(vendorDTO.getCode());
     	editVendor.setGstNumber(vendorDTO.getGstNumber());
     	editVendor.setContactPerson(vendorDTO.getContactPerson());
     	editVendor.setPhoneNumber(vendorDTO.getPhoneNumber());

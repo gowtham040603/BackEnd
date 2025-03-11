@@ -9,7 +9,7 @@ import com.hexbee.usermanagement.Repository.UserRepository;
 import com.hexbee.usermanagement.dto.ProductDTO;
 import com.hexbee.usermanagement.entity.ProductEntity;
 import com.hexbee.usermanagement.service.ProductService;
-
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class ProductServiceIMPL implements ProductService {
         ProductEntity product = new ProductEntity();
         product.setName(productDTO.getName());
         product.setPricePerUnit(productDTO.getPricePerUnit());
-        product.setBaseUnit(productDTO.getBaseUnit());
+        product.setUnit(productDTO.getUnit());
         product.setCgst(productDTO.getCgst());
         product.setSgst(productDTO.getSgst());
         product.setStock(productDTO.getStock());
@@ -43,7 +43,7 @@ public class ProductServiceIMPL implements ProductService {
         product.setIsSpWithTax(productDTO.getIsSpWithTax());
         product.setIsPpWithTax(productDTO.getIsPpWithTax());
         product.setMinStockAlert(productDTO.getMinStockAlert());
-        product.setSubUnit(productDTO.getSubUnit());
+        product.setUnitMeasurement(productDTO.getUnitMeasurement());
         product.setBatchNumber(productDTO.getBatchNumber());
         product.setImageUrl(productDTO.getImageUrl());
 
@@ -58,12 +58,10 @@ public class ProductServiceIMPL implements ProductService {
 
     @Override
     public ProductEntity updateProduct(int id, ProductDTO productDTO) {
-        ProductEntity product = productRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Product not found"));
-        
+        ProductEntity product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
         product.setName(productDTO.getName());
         product.setPricePerUnit(productDTO.getPricePerUnit());
-        product.setBaseUnit(productDTO.getBaseUnit());
+        product.setUnit(productDTO.getUnit());
         product.setCgst(productDTO.getCgst());
         product.setSgst(productDTO.getSgst());
         product.setStock(productDTO.getStock());
@@ -78,18 +76,15 @@ public class ProductServiceIMPL implements ProductService {
         product.setIsSpWithTax(productDTO.getIsSpWithTax());
         product.setIsPpWithTax(productDTO.getIsPpWithTax());
         product.setMinStockAlert(productDTO.getMinStockAlert());
-        product.setSubUnit(productDTO.getSubUnit());
+        product.setUnitMeasurement(productDTO.getUnitMeasurement());
         product.setBatchNumber(productDTO.getBatchNumber());
         product.setImageUrl(productDTO.getImageUrl());
 
-        // Preserve existing date if the request has null
-        if (productDTO.getDate() != null) {
-            product.setDate(productDTO.getDate());
-        }
-
-        return productRepository.save(product); // updatedAt is automatically set via @PreUpdate
+        
+        product.setUpdatedAt(LocalDateTime.now());
+        ProductEntity updatedProduct = productRepository.save(product);
+        return updatedProduct;
     }
-
 
     @Override
     public Optional<ProductEntity> getProductById(Integer id) {

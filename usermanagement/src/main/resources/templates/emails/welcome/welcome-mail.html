@@ -1,29 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
-        
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-            text-align: center;
-        }
-        .welcome-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-weight: bold;
-            color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <div>
+<body style="font-family: Arial, sans-serif; color: #333;">
+    <div style="text-align: center;">
         <img src="cid:hexbeeLogo" width="100" alt="Hexbee Logo"/>
-        <h2 class="welcome-text">Welcome, <span th:text="${displayName}">User</span>!</h2>
+        <h2>Welcome, <span style="color: #0056b3;">${name}</span>!</h2>
         <p>We are excited to have you on board at <b>Hexbee</b>.</p>
         <p>Enjoy our services!</p>
     </div>
 </body>
 </html>
-

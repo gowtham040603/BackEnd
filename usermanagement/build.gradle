@@ -54,24 +54,11 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j' // MySQL JDBC Driver
     runtimeOnly 'org.postgresql:postgresql' // PostgreSQL JDBC Driver
     
-    //notification
     
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-
-    implementation 'org.springframework.boot:spring-boot-starter-mail' // Email support
-
-
-    //Thymeleaf  
-        
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     
     // jwt
 
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4'
-	
- 
 	
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'io.jsonwebtoken:jjwt-api:0.11.5'

@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.hexbee.usermanagement.dto.ProductDTO;
-import com.hexbee.usermanagement.dto.ProductResponseDTO;
 import com.hexbee.usermanagement.entity.ProductEntity;
 import com.hexbee.usermanagement.service.ProductService;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -37,12 +35,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductResponseDTO>> getAllProducts() {
-        List<ProductResponseDTO> products = productService.getAllProducts()
-        		.stream()
-                .map(ProductResponseDTO::new)
-                .collect(Collectors.toList());
-        
+    public ResponseEntity<List<ProductEntity>> getAllProducts() {
+        List<ProductEntity> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
